@@ -19,16 +19,24 @@
 
 			
 			<xsl:choose>
-				<xsl:when test="$isArray">
+				<xsl:when test="$isArray=true()">
 					<xsl:if test="$isStartArray=true()">
 						"<xsl:value-of select="name(.)" />": [
 					</xsl:if>
 					
-					{
-					<xsl:for-each select="*">
-						<xsl:value-of select="json:parsenode(current())" />
-					</xsl:for-each>
-					}
+					<xsl:choose>
+						<xsl:when test="count(*) &gt; 0">
+							{
+								<xsl:for-each select="*">
+									<xsl:value-of select="json:parsenode(current())" />
+								</xsl:for-each>
+							}
+						</xsl:when>
+						<xsl:otherwise>
+							"<xsl:value-of select="current()" />"
+						</xsl:otherwise>
+					
+					</xsl:choose>
 					
 					<xsl:choose>
 						<xsl:when test="$isEndArray=true()">
