@@ -27,9 +27,9 @@
 					<xsl:choose>
 						<xsl:when test="count(*) &gt; 0">
 							{
-								<xsl:for-each select="*">
-									<xsl:value-of select="json:parsenode(current())" />
-								</xsl:for-each>
+							<xsl:for-each select="*">
+								<xsl:value-of select="json:parsenode(current())" />
+							</xsl:for-each>
 							}
 						</xsl:when>
 						<xsl:otherwise>
@@ -79,6 +79,4 @@
 		</xsl:for-each>	
 		}
 	</xsl:template>
-	
-	
 </xsl:stylesheet>
